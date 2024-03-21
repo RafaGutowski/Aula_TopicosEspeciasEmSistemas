@@ -1,0 +1,5 @@
+### Listagem de Produtos
+GET http://localhost:5090/produto/listar
+
+### Cadastro de Produtos
+POST http://localhost:5090/produto/cadastrar
