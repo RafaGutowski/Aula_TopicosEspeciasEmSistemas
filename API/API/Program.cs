@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 List<Produto> produtos =  new List<Produto>();
+produtos.Add(new Produto("Celular", "IOS"));
 
 //Funcionalidades da aplicação - EndPoints
 app.MapGet("/produto/listar", () => "Listagem de produtos");
