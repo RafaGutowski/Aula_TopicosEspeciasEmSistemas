@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
+//List<Produto> produtos = new Produto();
 List<Produto> produtos =
 [
     new Produto("Celular", "IOS", 5000),
@@ -37,27 +38,65 @@ app.MapGet("/produto/buscar/{nome}", ([FromRoute] string nome) =>
     }
 );
 
+//EXERCÍCIOS
+//1) Cadastrar um produto 
 // POST: http://localhost:5090/produto/cadastrar
-app.MapPost("/produto/cadastrar/{nome}/{descricao}/{valor}", ([FromRoute] string nome, [FromRoute] string descricao, [FromRoute] double valor) => 
-    {
-        //Preencher o objeto pelo construtor
-        Produto produto = new Produto(nome, descricao, valor);  
+// a) Pela URL - app.MapPost("/produto/cadastrar/{nome}/{descricao}/{valor}", ([FromRoute] string nome, [FromRoute] string descricao, [FromRoute] double valor) => 
+    // {
+    //     //Preencher o objeto pelo construtor
+    //     Produto produto = new Produto(nome, descricao, valor);  
 
-        //Preencher o objeto pelos atributos
-        produto.Nome = nome;
-        produto.Descricao = descricao;
-        produto.Valor = valor;
+    //     //Preencher o objeto pelos atributos
+    //     produto.Nome = nome;
+    //     produto.Descricao = descricao;
+    //     produto.Valor = valor;
+
+    //     Adicionar o objeto dentro da lista
+    //     produtos.Add(produto);
+    //     return Results.Created("", produto);
+    // });
+
+//b) Pelo corpo
+app.MapPost("/produto/cadastrar", ([FromBody] Produto produto) => 
+    {
+        // //Preencher o objeto pelo construtor
+        // Produto produto = new Produto(nome, descricao, valor);  
+
+        // //Preencher o objeto pelos atributos
+        // produto.Nome = nome;
+        // produto.Descricao = descricao;
+        // produto.Valor = valor;
 
         //Adicionar o objeto dentro da lista
         produtos.Add(produto);
         return Results.Created("", produto);
     });
 
-//EXERCÍCIOS
-//1) Cadastrar um produto 
-//a) Pela URL
-//b) Pelo corpo
 //2) Remoção do produto
+app.MapDelete("/produto/deletar/{nome}", ([FromRoute] string nome) => {
+    for (int i = 0; i < produtos.Count; i++)
+    {
+        if (produtos[i].Nome == nome)
+        {
+            produtos.RemoveAt(i);
+            return Results.Ok("Produto removido!");
+        }
+    }
+        return Results.NotFound("Produto não encontrado");
+});
 //3) Alteração do produto
+
+app.MapPatch("/produto/alterar/{nome}/{descricao}/{valor}", ([FromRoute] string nome, [FromRoute] string descricao, [FromRoute] double valor) => {
+        for (int i = 0; i < produtos.Count; i++)
+    {
+        if (produtos[i].Nome == nome)
+        {
+            produtos[i].Descricao = descricao;
+            produtos[i].Valor = valor;
+            return Results.Ok("Produto alterado!");
+        }
+    }
+        return Results.NotFound("Produto não encontrado");
+});
 
 app.Run();

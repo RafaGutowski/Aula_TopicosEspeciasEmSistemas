@@ -8,4 +8,20 @@ GET http://localhost:5090/produto/listar
 GET http://localhost:5090/produto/buscar/Televisão
 
 ### Cadastro de Produtos
-POST http://localhost:5090/produto/cadastrar/arroz/alimento/10
+POST http://localhost:5090/produto/cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "Arroz",
+    "descricao": "Alimento",
+    "Valor": 10
+}
+
+
+### Deletar produtos
+
+DELETE http://localhost:5090/produto/deletar/Arroz
+
+### Alterar Produto
+
+PATCH http://localhost:5090/produto/alterar/Arroz/Grão/8
