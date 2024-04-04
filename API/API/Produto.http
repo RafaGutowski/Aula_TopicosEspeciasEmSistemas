@@ -1,5 +1,11 @@
+### Raiz da aplicação
+GET http://localhost:5090/
+
 ### Listagem de Produtos
 GET http://localhost:5090/produto/listar
 
+### Busca de Produtos por nome
+GET http://localhost:5090/produto/buscar/Televisão
+
 ### Cadastro de Produtos
-POST http://localhost:5090/produto/cadastrar
+POST http://localhost:5090/produto/cadastrar/arroz/alimento/10
