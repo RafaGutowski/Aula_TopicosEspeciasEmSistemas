@@ -3,11 +3,12 @@
 public class Produto
 {
     //Construtor
-    public Produto() {
+    public Produto()
+    {
 
         Id = Guid.NewGuid().ToString();
         CriadoEm = DateTime.Now;
-     }
+    }
 
     public Produto(string nome, string descricao, double valor)
     {
@@ -24,4 +25,7 @@ public class Produto
     public string? Descricao { get; set; }
     public double Valor { get; set; }
     public DateTime CriadoEm { get; set; }
+
+    public int Quantidade { get; set; }
+
 }
