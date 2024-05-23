@@ -8,7 +8,7 @@ import Soma from "./Soma";
 function App() {
   return (
     <div>
-      <Soma></Soma>
+      <Soma />
     </div>
   );
 }
