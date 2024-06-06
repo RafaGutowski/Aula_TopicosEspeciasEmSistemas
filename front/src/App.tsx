@@ -1,9 +1,12 @@
 import React from 'react';
+import CepConsultar from './Components/pages/cep/cep-consultar';
+import ProdutoListar from './Components/pages/produto/produto-listar';
 
 function App() {
   return (
     <div>
-      <h1>App rodando</h1>
+      {/*<CepConsultar></CepConsultar>*/}
+      <ProdutoListar></ProdutoListar>
     </div>
   );
 }
